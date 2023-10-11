@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <tbody><tr>
+            <th><label for="Amount">Amount</label></th>
+            <th>From Currency</th>
+            <th>To Currency</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" id="Amount">
+            </td>
+
+            <td>
+                <select id="From">
+                    <option value="VND">VND</option>
+                    <option value="USD">USD</option>
+                </select>
+            </td>
+
+            <td>
+                <select id="To">
+                    <option value="VND">VND</option>
+                    <option value="USD">USD</option>
+                </select>
+            </td>
+            <td><button onclick="ChangeMoney()">Convert</button></td>
+        </tr>            
+    </tbody></table>
+    
+    <br>
+    <p id="Result"></p>
+    <script>
+        function ChangeMoney() {
+            let Amount = document.getElementById("Amount").value;
+            let From = document.getElementById("From").value;
+            let To = document.getElementById("To").value;
+            let result = 0;
+            let vndToUsdExchangeRate = 1 / 24000;
+            let usdToVndExchangeRate = 24000;
+
+            if (From === "VND" && To === "USD") {
+              result = Amount * vndToUsdExchangeRate;
+              document.getElementById("Result").innerText = result;
+            } else if (From === "USD" && To === "VND") {
+              result = Amount * usdToVndExchangeRate;
+              document.getElementById("Result").innerText = result;
+            } else {
+              result = Amount;
+            }
+            document.getElementById(
+              "Result"
+            ).innerText = `Result: ${result} ${To}`;
+        };
+
+
+    </script>
+</body>
+</html>
